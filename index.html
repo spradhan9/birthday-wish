@@ -1,5 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="🎉 Happy Birthday Priya 🎂">
-<meta property="og:description" content="A special surprise is waiting for you!">
-<meta property="og:image" content="https://yourusername.github.io/birthday-wish/birthday-cover.jpg">
-<meta property="og:type" content="website">
+  <title>🎉 Happy Birthday!</title>
+
+  <!-- WhatsApp Preview -->
+  <meta property="og:title" content="🎂 Happy Birthday 🎉" />
+  <meta property="og:description" content="A special birthday surprise is waiting for you!" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=1200" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ff6b6b, #ff9f43, #feca57);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 25px;
+      max-width: 700px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation: glow 2s infinite alternate;
+    }
+
+    p {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .cake {
+      font-size: 90px;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px white; }
+      to { text-shadow: 0 0 25px yellow; }
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 30px;
+      background: white;
+      color: #ff4d6d;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: white;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-100vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(100vh) rotate(720deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="cake">🎂</div>
+
+    <h1>Happy Birthday!</h1>
+
+    <p>
+      Wishing you a day filled with happiness,
+      laughter, love, and unforgettable memories.
+      May all your dreams come true! 🎉✨
+    </p>
+
+    <a class="btn" href="#">Celebrate 🎁</a>
+  </div>
+
+  <script>
+    for(let i=0;i<60;i++){
+      const c=document.createElement('div');
+      c.className='confetti';
+      c.style.left=Math.random()*100+'vw';
+      c.style.animationDuration=(Math.random()*3+2)+'s';
+      c.style.opacity=Math.random();
+      c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+      document.body.appendChild(c);
+    }
+  </script>
+
+</body>
+</html>
