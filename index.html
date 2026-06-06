@@ -3,614 +3,499 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Happy Birthday Dipu Bhai ✨</title>
-
-    <meta property="og:title" content="🎂 Happy Birthday Dipu Bhai 🎉">
-    <meta property="og:description" content="A premium birthday surprise crafted for Dipu Bhai! 🎁">
-    <meta property="og:image" content="https://spradhan9.github.io/birthday-wish/cover.jpg">
-    <meta property="og:url" content="https://spradhan9.github.io/birthday-wish/">
-    <meta property="og:type" content="website">
-
+    <title>✨ Dipu Bhai's Premium 3D Birthday Celebration ✨</title>
     <style>
         :root {
-            --gold-primary: #f39c12;
+            --bg-gradient: radial-gradient(circle at center, #1b1464 0%, #0c0822 60%, #02010a 100%);
+            --cake-crust: #5c1d43;
+            --cake-sponge: #8c3a6c;
+            --cream-layer: #ffb8b8;
+            --frosting-top: #ffffff;
             --gold-light: #f1c40f;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --text-main: #f5f6fa;
-            --cake-color: #6d214f;
-            --frosting-color: #fff;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
         }
 
         body {
             min-height: 100vh;
             overflow: hidden;
-            background: radial-gradient(circle at center, #1b1464 0%, #0c0822 60%, #02010a 100%);
+            background: var(--bg-gradient);
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--text-main);
-            position: relative;
-        }
-
-        /* --- Ambient Glittering Background Particles --- */
-        .ambient-sparkle {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.3;
-            animation: drift linear infinite;
-        }
-
-        @keyframes drift {
-            0% { transform: translateY(105vh) translateX(0) scale(0.5); opacity: 0; }
-            50% { opacity: 0.6; }
-            100% { transform: translateY(-5vh) translateX(50px) scale(1.2); opacity: 0; }
+            color: #fff;
+            perspective: 1200px;
         }
 
         .container {
             text-align: center;
             z-index: 10;
-            padding: 20px;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* --- Premium Animated Gold Typography --- */
         .title {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 800;
             letter-spacing: 2px;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, #ffe066, #f1c40f, #ff9ff3, #f1c40f);
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #ffe066, var(--gold-light), #ff9ff3, var(--gold-light));
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(241, 196, 15, 0.25);
-            animation: gradientMove 6s ease infinite, pulse 2.5s infinite ease-in-out;
+            text-shadow: 0 0 30px rgba(241, 196, 15, 0.3);
+            animation: moveGradient 6s infinite linear;
         }
 
-        @keyframes gradientMove {
+        @keyframes moveGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.04); }
-        }
-
-        /* --- Pure CSS Realistic 3D Tiered Cake --- */
-        .cake-area {
+        /* --- THE 3D SCENE --- */
+        .stage-3d {
+            width: 300px;
+            height: 300px;
             position: relative;
-            width: 250px;
-            height: 240px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            perspective: 1000px;
+            transform-style: preserve-3d;
+            transform: rotateX(25deg) rotateY(-15deg);
+            transition: transform 1.5s ease;
+            margin-bottom: 40px;
         }
 
-        /* Pure CSS Luxury Candle */
-        .candle-container {
+        /* --- THE CANDLE --- */
+        .candle {
             position: absolute;
-            bottom: 120px;
-            z-index: 20;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%) translateZ(40px);
+            z-index: 50;
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .candle-container:hover {
-            transform: scale(1.1);
-        }
-
-        .candle-wick {
-            width: 2px;
-            height: 10px;
-            background: #2c3e50;
+            transform-style: preserve-3d;
+            transition: transform 0.3s;
         }
 
         .candle-body {
-            width: 12px;
-            height: 55px;
+            width: 10px;
+            height: 50px;
             background: linear-gradient(to right, #e74c3c, #ff7675, #c0392b);
-            border-radius: 4px 4px 2px 2px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-radius: 3px;
         }
 
-        /* Complex Natural Burning Flame */
         .flame {
-            width: 18px;
-            height: 30px;
-            background: linear-gradient(to bottom, #ffffff 0%, #fff200 25%, #f79f1f 60%, #ff3f34 100%);
+            width: 14px;
+            height: 24px;
+            background: linear-gradient(to bottom, #fff, #fff200, #ff3f34);
             border-radius: 50% 50% 35% 35%;
-            box-shadow: 0 0 15px #fff200, 0 0 30px #f79f1f, 0 0 50px #ff3f34;
-            animation: realisticFlicker 0.1s infinite alternate ease-in-out;
-            transform-origin: center bottom;
+            box-shadow: 0 0 15px #fff200, 0 0 30px #ff3f34;
+            animation: flicker 0.1s infinite alternate;
+            margin-bottom: 2px;
         }
 
-        @keyframes realisticFlicker {
-            0% { transform: scale(1) rotate(-1.5deg); filter: brightness(1); }
-            100% { transform: scale(1.1) rotate(1.5deg) translateX(1px); filter: brightness(1.2); }
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-1deg); }
+            100% { transform: scale(1.1) rotate(1deg); }
         }
 
         .smoke {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(220, 225, 230, 0.5);
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.4);
             border-radius: 50%;
+            position: absolute;
+            top: -10px;
             display: none;
-            animation: microSmoke 2.5s forwards ease-out;
+            animation: riseSmoke 2s forwards ease-out;
         }
 
-        @keyframes microSmoke {
-            0% { opacity: 0.8; transform: translateY(-10px) scale(1); filter: blur(0px); }
-            50% { transform: translateY(-40px) translateX(-15px) scale(2.5); filter: blur(2px); }
-            100% { opacity: 0; transform: translateY(-90px) translateX(-30px) scale(4); filter: blur(5px); }
+        @keyframes riseSmoke {
+            0% { opacity: 0.8; transform: translateY(0) scale(1); filter: blur(0px); }
+            100% { opacity: 0; transform: translateY(-60px) translateX(-10px) scale(3); filter: blur(3px); }
         }
 
-        /* 3D Cake Structure Layout */
-        .cake-3d {
-            width: 220px;
+        /* --- THE CAKE CYLINDER --- */
+        .cake-wrapper {
+            position: absolute;
+            width: 240px;
             height: 120px;
-            position: relative;
+            top: 90px;
+            left: 30px;
             transform-style: preserve-3d;
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.2);
-            cursor: pointer;
         }
 
-        /* Cake Base Tier */
-        .cake-base {
+        /* Main Round Cake Body */
+        .main-cake {
             position: absolute;
-            bottom: 0;
             width: 100%;
-            height: 90px;
-            background: linear-gradient(to bottom, #741547 0%, #4a0e2e 100%);
-            border-radius: 20px 20px 10px 10px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-            overflow: hidden;
+            height: 100%;
+            background: var(--cake-crust);
+            border-radius: 50%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            transform-style: preserve-3d;
+            transition: opacity 0.5s;
         }
 
-        /* Frosting Drips Layer */
-        .frosting-top {
+        /* Realistic Cream Frosting Top */
+        .main-cake::before {
+            content: '';
             position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--frosting-top);
+            border-radius: 50%;
+            transform: translateZ(2px);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* Frosting Drops Side Simulation */
+        .main-cake::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: var(--frosting-top);
+            top: 40px;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0.85;
+        }
+
+        /* --- THE 3D SLICE (To cut and pull out) --- */
+        .cake-slice {
+            position: absolute;
+            width: 120px;
+            height: 120px;
             top: 0;
-            width: 100%;
-            height: 25px;
-            background: #fff;
-            border-radius: 20px 20px 0 0;
+            left: 50%;
+            transform-origin: left center;
+            transform: rotateY(45deg) translateZ(0px); /* Controlled by JS */
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+            display: none;
         }
 
-        .drip {
+        /* Cut Layer Inside Textures */
+        .slice-side {
             position: absolute;
-            background: #fff;
-            width: 20px;
-            height: 18px;
-            border-radius: 0 0 10px 10px;
-            top: 15px;
+            width: 120px;
+            height: 100px;
+            background: linear-gradient(to bottom, var(--cake-sponge) 30%, var(--cream-layer) 35%, var(--cake-sponge) 65%, var(--cream-layer) 70%, var(--cake-sponge) 100%);
+            transform-origin: left center;
+            box-shadow: inset -5px 0 10px rgba(0,0,0,0.3);
         }
-        .drip-1 { left: 15px; height: 24px; }
-        .drip-2 { left: 55px; height: 20px; }
-        .drip-3 { left: 105px; height: 28px; }
-        .drip-4 { left: 145px; height: 18px; }
-        .drip-5 { left: 185px; height: 25px; }
 
-        .cream-middle-line {
+        .side-1 { transform: rotateX(-90deg) rotateY(90deg); }
+        .side-2 { transform: rotateX(-90deg) rotateY(120deg); }
+
+        .slice-back {
             position: absolute;
-            width: 100%;
-            height: 12px;
-            background: #ffb8b8;
-            top: 55px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            width: 62px;
+            height: 100px;
+            background: var(--cake-crust);
+            left: 90px;
+            top: 28px;
+            transform: rotateZ(105deg);
+            border-radius: 4px;
         }
 
-        /* Strawberries on top */
-        .decorations {
+        /* Strawberries Top Decor */
+        .strawberry-decor {
             position: absolute;
-            top: -12px;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            padding: 0 20px;
-        }
-
-        .strawberry {
             width: 16px;
             height: 20px;
             background: #ff3838;
             border-radius: 50% 50% 35% 35%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transform: translateZ(5px);
         }
 
-        /* Cut animation transformation */
-        .cake-3d.cut {
-            transform: scale(0.85) rotateX(10deg) rotateY(-10deg) translateY(30px);
-            opacity: 0.15;
-            filter: blur(2px);
+        /* --- THE CSS INTERACTIVE KNIFE --- */
+        .knife {
+            position: absolute;
+            width: 160px;
+            height: 30px;
+            left: 280px;
+            top: 50px;
+            transform-style: preserve-3d;
+            transform: translateZ(150px) rotateX(-20deg) rotateY(-40deg);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 1s ease;
+            z-index: 100;
         }
 
-        /* --- Interactive Instructions --- */
+        .knife-blade {
+            position: absolute;
+            width: 110px;
+            height: 25px;
+            background: linear-gradient(to right, #bdc3c7, #ecf0f1, #95a5a6);
+            clip-path: polygon(0 30%, 85% 30%, 100% 100%, 0 100%);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .knife-handle {
+            position: absolute;
+            width: 50px;
+            height: 18px;
+            background: #7f8c8d;
+            left: -50px;
+            top: 5px;
+            border-radius: 4px 0 0 4px;
+        }
+
+        /* Knife Cutting Animation Classes */
+        .knife.appear { opacity: 1; transform: translateZ(50px) translateX(-80px) translateY(40px) rotateZ(-30deg); }
+        .knife.cut-action { transform: translateZ(20px) translateX(-110px) translateY(90px) rotateZ(0deg); }
+        .knife.withdraw { opacity: 0; transform: translateZ(200px) translateY(-50px); }
+
+        /* --- UTILITY & MESSAGES --- */
         .instruction {
-            margin-top: 30px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #a4b0be;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             font-weight: 600;
-            animation: breathe 2s infinite ease-in-out;
+            cursor: pointer;
+            background: rgba(255,255,255,0.05);
+            padding: 12px 25px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
         }
 
-        @keyframes breathe {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; color: var(--gold-light); }
-        }
-
-        /* --- Premium Toast Notification Pop-up --- */
-        .premium-toast {
-            position: fixed;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
+        .instruction:hover {
             background: rgba(241, 196, 15, 0.15);
-            border: 1px solid rgba(241, 196, 15, 0.4);
-            padding: 15px 30px;
-            border-radius: 50px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            border-color: var(--gold-light);
             color: #fff;
+        }
+
+        /* Toast Popup Box Setup */
+        .toast {
+            position: fixed;
+            top: -80px;
+            background: rgba(241, 196, 15, 0.2);
+            border: 1px solid var(--gold-light);
+            padding: 12px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
             font-weight: 600;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(241, 196, 15, 0.2);
-            z-index: 100;
-            transition: top 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.25);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .premium-toast.show {
-            top: 30px;
-        }
-
-        /* --- Modern Glassmorphism Main Card --- */
-        .reveal {
-            display: none;
-            max-width: 460px;
-            margin: 0 auto;
-            animation: premiumReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        @keyframes premiumReveal {
-            from { opacity: 0; transform: translateY(60px) scale(0.93); filter: blur(10px); }
-            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
-        }
-
-        .photo-frame {
-            position: relative;
-            width: 190px;
-            height: 190px;
-            margin: 0 auto 35px auto;
-        }
-
-        .photo-frame::before {
-            content: '';
-            position: absolute;
-            inset: -8px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #f1c40f, #ff7675, #f39c12);
-            z-index: -1;
-            animation: spin 4s linear infinite;
-        }
-
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        .photo {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 4px solid #0f0b29;
-            object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+            z-index: 1000;
+        }
+        .toast.show { top: 30px; }
+
+        /* Final Beautiful Wish Dashboard Reveal */
+        .reveal-card {
+            display: none;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 35px;
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            animation: fadeInUp 1.2s forwards cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .message-board {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 40px 30px;
-            border-radius: 28px;
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); blur: (10px); }
+            to { opacity: 1; transform: translateY(0); blur: (0px); }
         }
 
-        .message-board h2 {
-            font-size: 2rem;
-            color: var(--gold-light);
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
+        .reveal-card h2 { color: var(--gold-light); margin-bottom: 15px; font-size: 1.8rem;}
+        .reveal-card p { line-height: 1.8; color: #e1e1e9; font-weight: 300; }
 
-        .message-board p {
-            font-size: 1.08rem;
-            line-height: 1.8;
-            color: #dfdfef;
-            font-weight: 300;
-        }
-
-        /* --- Dynamic Floating Particles & Confetti --- */
-        .celebration-item {
-            position: absolute;
-            bottom: -100px;
-            pointer-events: none;
-            animation: smoothFloatUp linear infinite;
-        }
-
-        @keyframes smoothFloatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            15% { opacity: 0.35; }
-            85% { opacity: 0.35; }
-            100% { transform: translateY(-135vh) rotate(30deg); opacity: 0; }
-        }
-
-        .confetti-particle {
+        /* Particle Stars Explosion */
+        .sparkle-particle {
             position: absolute;
             pointer-events: none;
             border-radius: 50%;
+            animation: burstOut 0.8s ease-out forwards;
         }
-
-        @keyframes physicsFall {
-            0% { transform: translateY(-5vh) translateX(0) rotate3d(1, 1, 1, 0deg); opacity: 1; }
-            100% { transform: translateY(105vh) translateX(120px) rotate3d(1, 2, 1, 1080deg); opacity: 0; }
-        }
-
-        .firework-spark {
-            position: absolute;
-            pointer-events: none;
-            border-radius: 50%;
-            background: white;
-            animation: radialExplode 0.9s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-        }
-
-        @keyframes radialExplode {
+        @keyframes burstOut {
             0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; filter: brightness(1.5); }
-        }
-
-        @media(max-width: 480px){
-            .title { font-size: 2.1rem; }
-            .message-board { padding: 30px 20px; }
-            .message-board p { font-size: 0.98rem; }
-            .cake-area { width: 200px; height: 210px; }
-            .cake-3d { width: 180px; height: 105px; }
-            .candle-body { height: 45px; }
+            100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-<div class="premium-toast" id="toast">
-    <span id="toastIcon">🕯️</span> <span id="toastText">Make a wish, Dipu Bhai!</span>
-</div>
+<div class="toast" id="toastBox">🕯️ Blow out the candle first, Dipu Bhai!</div>
 
 <div class="container">
+    <h1 class="title" id="mainTitle">✨ FOR DIPU BHAI ✨</h1>
 
-    <h1 class="title" id="displayTitle">✨ SURPRISE ✨</h1>
-
-    <div id="stage1">
-        <div class="cake-area">
-            <div class="candle-container" id="candleGroup">
-                <div class="flame" id="flameLayer"></div>
-                <div class="smoke" id="smokeLayer"></div>
-                <div class="candle-wick"></div>
+    <!-- 3D INTERACTIVE THEATRE -->
+    <div id="actionStage">
+        <div class="stage-3d" id="scene3d">
+            
+            <!-- Real Candle Design -->
+            <div class="candle" id="candleGroup">
+                <div class="flame" id="fire"></div>
+                <div class="smoke" id="smokeOut"></div>
                 <div class="candle-body"></div>
             </div>
-            
-            <div class="cake-3d" id="cakeStructure">
-                <div class="decorations">
-                    <div class="strawberry"></div>
-                    <div class="strawberry"></div>
-                    <div class="strawberry"></div>
-                    <div class="strawberry"></div>
-                </div>
-                <div class="cake-base">
-                    <div class="frosting-top">
-                        <div class="drip drip-1"></div>
-                        <div class="drip drip-2"></div>
-                        <div class="drip drip-3"></div>
-                        <div class="drip drip-4"></div>
-                        <div class="drip drip-5"></div>
-                    </div>
-                    <div class="cream-middle-line"></div>
+
+            <!-- Modern 3D Layered Cake Mechanism -->
+            <div class="cake-wrapper" id="cakeClickZone">
+                <div class="main-cake" id="baseCake"></div>
+                
+                <!-- The dynamic cutting piece -->
+                <div class="cake-slice" id="pulledSlice">
+                    <div class="slice-side side-1"></div>
+                    <div class="slice-side side-2"></div>
+                    <div class="slice-back"></div>
+                    <div class="strawberry-decor" style="top:20px; left:40px;"></div>
                 </div>
             </div>
+
+            <!-- Pure CSS Interactive Moving Knife -->
+            <div class="knife" id="cssKnife">
+                <div class="knife-blade"></div>
+                <div class="knife-handle"></div>
+            </div>
+
         </div>
-        
-        <p class="instruction" id="actionHint">
-            🕯️ Tap the candle to blow it out
+
+        <button class="instruction" id="actionBtn">🕯️ Tap Candle to Blow Out</button>
+    </div>
+
+    <!-- REVEAL BOARD -->
+    <div class="reveal-card" id="wishBoard">
+        <h2>👑 Happy Birthday, Dipu Bhai!</h2>
+        <p>
+            Wishing you a spectacular year ahead filled with grandeur, peak health, and absolute success. 
+            May all your ambitions match reality, and may every moment bring happiness, luxury, 
+            and prosperity into your life. Cheers to your brilliant chapter ahead! ❤️🥂
         </p>
     </div>
-
-    <div class="reveal" id="revealDashboard">
-        <div class="photo-frame">
-            <img class="photo" src="birthday-photo.jpg" alt="Dipu Bhai">
-        </div>
-        
-        <div class="message-board">
-            <h2>👑 Happy Birthday, Dipu Bhai!</h2>
-            <p>
-                Wishing you a magnificent year ahead filled with unmatched luxury, perfect health, 
-                and massive milestones. May every venture you take turn into golden success, and may 
-                your life always be filled with happiness and brotherhood. Have an extraordinary day! ❤️🍻
-            </p>
-        </div>
-    </div>
-
 </div>
 
 <script>
-    let isCandleExtinguished = false;
+    let step = 0; // 0=Lighted, 1=Blown, 2=Slicing/Done
 
-    const flame = document.getElementById("flameLayer");
-    const smoke = document.getElementById("smokeLayer");
     const candle = document.getElementById("candleGroup");
-    const cake = document.getElementById("cakeStructure");
-    const revealPanel = document.getElementById("revealDashboard");
-    const actionHint = document.getElementById("actionHint");
-    const displayTitle = document.getElementById("displayTitle");
-    const toast = document.getElementById("toast");
-    const toastText = document.getElementById("toastText");
-    const toastIcon = document.getElementById("toastIcon");
+    const fire = document.getElementById("fire");
+    const smoke = document.getElementById("smokeOut");
+    const cakeBase = document.getElementById("baseCake");
+    const cakeSlice = document.getElementById("pulledSlice");
+    const knife = document.getElementById("cssKnife");
+    const actionBtn = document.getElementById("actionBtn");
+    const mainTitle = document.getElementById("mainTitle");
+    const toast = document.getElementById("toastBox");
+    const actionStage = document.getElementById("actionStage");
+    const wishBoard = document.getElementById("wishBoard");
+    const scene3d = document.getElementById("scene3d");
 
-    // Initialize premium system background animations
-    initBackgroundGlitter();
-    initFloatingEmblems();
-
-    // Custom Toast Controller
-    function showPremiumToast(icon, text, duration = 3000) {
-        toastIcon.innerHTML = icon;
-        toastText.innerHTML = text;
+    function triggerToast(text) {
+        toast.innerText = text;
         toast.classList.add("show");
-        setTimeout(() => toast.classList.remove("show"), duration);
+        setTimeout(() => toast.classList.remove("show"), 3000);
     }
 
-    // Phase 1: Blow Candle Interaction
+    // Step 1: Candle blowout interaction
     candle.addEventListener("click", () => {
-        if (isCandleExtinguished) return;
-        isCandleExtinguished = true;
-
-        flame.style.display = "none";
+        if(step !== 0) return;
+        step = 1;
+        fire.style.display = "none";
         smoke.style.display = "block";
-        showPremiumToast("🍰", "Excellent, Dipu Bhai! Now tap the cake to slice it.");
-        actionHint.innerHTML = "🎂 Tap the cake to cut it";
+        actionBtn.innerText = "🔪 Tap Cake to Cut with Knife";
+        triggerToast("🍰 Perfect wish made! Now let's slice the cake.");
     });
 
-    // Phase 2: Cut Cake & Premium Reveal Interaction
-    cake.addEventListener("click", () => {
-        if (!isCandleExtinguished) {
-            showPremiumToast("🕯️", "Blow out the candle flame first!");
+    // Step 2: Knife Slicing and Cake Pull-out Animation sequence
+    actionBtn.addEventListener("click", handleCuttingSequence);
+    cakeBase.addEventListener("click", handleCuttingSequence);
+
+    function handleCuttingSequence() {
+        if (step === 0) {
+            triggerToast("🕯️ Please blow out the candle first, Dipu Bhai!");
             return;
         }
+        if (step > 1) return;
+        step = 2;
 
-        cake.classList.add("cut");
-        showPremiumToast("✨", "Celebrating Dipu Bhai! 🎉");
-
-        setTimeout(() => {
-            document.getElementById("stage1").style.display = "none";
-            displayTitle.innerHTML = "👑 DIPU BHAI 👑";
-            revealPanel.style.display = "block";
-            
-            // Trigger multi-layer cascading animations
-            generatePhysicsConfetti();
-            triggerCinematicFireworks();
-        }, 1100);
-    });
-
-    // Ambient Space Micro-Glitter Particles
-    function initBackgroundGlitter() {
-        for(let i = 0; i < 40; i++) {
-            const sparkle = document.createElement("div");
-            sparkle.className = "ambient-sparkle";
-            sparkle.style.width = (1 + Math.random() * 3) + "px";
-            sparkle.style.height = sparkle.style.width;
-            sparkle.style.left = Math.random() * 100 + "vw";
-            sparkle.style.animationDuration = (8 + Math.random() * 10) + "s";
-            sparkle.style.animationDelay = (Math.random() * 8) + "s";
-            document.body.appendChild(sparkle);
-        }
-    }
-
-    // Premium Floating Ambient Accents
-    function initFloatingEmblems() {
-        const luxuryIcons = ["✨", "👑", "🥂", "🥃", "⭐", "🎉"];
-        for (let i = 0; i < 18; i++) {
-            const item = document.createElement("div");
-            item.className = "celebration-item";
-            item.innerHTML = luxuryIcons[Math.floor(Math.random() * luxuryIcons.length)];
-            item.style.left = Math.random() * 100 + "vw";
-            item.style.fontSize = (18 + Math.random() * 22) + "px";
-            item.style.animationDuration = (12 + Math.random() * 10) + "s";
-            item.style.animationDelay = (Math.random() * 6) + "s";
-            document.body.appendChild(item);
-        }
-    }
-
-    // Physics Engine simulated Confetti Burst 
-    function generatePhysicsConfetti() {
-        const luxuryPalette = ['#f1c40f', '#f39c12', '#ff7675', '#2ecc71', '#3498db', '#e84393', '#ffffff'];
-        for (let i = 0; i < 140; i++) {
-            const p = document.createElement("div");
-            p.className = "confetti-particle";
-            p.style.left = Math.random() * 100 + "vw";
-            p.style.background = luxuryPalette[Math.floor(Math.random() * luxuryPalette.length)];
-            
-            const shapeSize = (6 + Math.random() * 7);
-            p.style.width = shapeSize + "px";
-            p.style.height = (shapeSize + Math.random() * 8) + "px";
-            
-            p.style.animation = `physicsFall ${2 + Math.random() * 2.5}s linear forwards`;
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 4500);
-        }
-    }
-
-    // High End Volumetric Firework Explosions
-    function triggerCinematicFireworks() {
-        let executionIndex = 0;
-        const fireworkColors = ['#ff4757', '#ffa502', '#2ed573', '#1e90ff', '#eccc68', '#ffffff'];
+        actionBtn.style.display = "none";
         
-        const fireworksTimer = setInterval(() => {
-            const targetX = 15 + Math.random() * 70;
-            const targetY = 15 + Math.random() * 45;
-            const chosenColor = fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
-
-            // Generate vectors symmetrically inside a sphere ring
-            for(let i = 0; i < 24; i++) {
-                const spark = document.createElement("div");
-                spark.className = "firework-spark";
-                spark.style.left = targetX + "vw";
-                spark.style.top = targetY + "vh";
-                spark.style.background = chosenColor;
-                spark.style.boxShadow = `0 0 10px ${chosenColor}`;
+        // 1. Knife moves into cutting placement position
+        knife.classList.add("appear");
+        
+        setTimeout(() => {
+            // 2. Knife pushes down to cut into the cake surface
+            knife.classList.add("cut-action");
+            
+            setTimeout(() => {
+                // 3. Hide full cake, reveal 3D sliced segments mesh 
+                cakeBase.style.opacity = "0.4";
+                cakeSlice.style.display = "block";
                 
-                const angle = (i / 24) * 2 * Math.PI;
-                const distance = 80 + Math.random() * 140;
-                const trajectoryX = Math.cos(angle) * distance;
-                const trajectoryY = Math.sin(angle) * distance;
-                
-                spark.style.setProperty('--tx', `${trajectoryX}px`);
-                spark.style.setProperty('--ty', `${trajectoryY}px`);
-                
-                const dimensions = (4 + Math.random() * 4) + "px";
-                spark.style.width = dimensions;
-                spark.style.height = dimensions;
+                // 4. Pull out knife safely
+                knife.classList.remove("cut-action");
+                knife.classList.add("withdraw");
 
-                document.body.appendChild(spark);
-                setTimeout(() => spark.remove(), 900);
-            }
+                setTimeout(() => {
+                    // 5. Slice pulls away dynamically outwards
+                    cakeSlice.style.transform = "rotateY(45deg) translateZ(40px) translateX(20px)";
+                    scene3d.style.transform = "rotateX(35deg) rotateY(25deg) scale(1.1)";
+                    
+                    // 6. Complete transition sequence reveal details
+                    setTimeout(() => {
+                        actionStage.style.display = "none";
+                        mainTitle.innerText = "🎉 HAPPY BIRTHDAY 🎉";
+                        wishBoard.style.display = "block";
+                        triggerCelebrationFX();
+                    }, 1200);
 
-            executionIndex++;
-            if (executionIndex > 10) clearInterval(fireworksTimer);
-        }, 400);
+                }, 600);
+            }, 800);
+        }, 1000);
+    }
+
+    // Ultra high-fidelity colorful celebratory effects explosion
+    function triggerCelebrationFX() {
+        const fxColors = ['#f1c40f', '#e74c3c', '#2ecc71', '#3498db', '#e84393', '#fff'];
+        for (let i = 0; i < 8; i++) {
+            setTimeout(() => {
+                const burstX = 20 + Math.random() * 60;
+                const burstY = 20 + Math.random() * 40;
+                const activeColor = fxColors[Math.floor(Math.random() * fxColors.length)];
+
+                for(let j = 0; j < 20; j++) {
+                    const spark = document.createElement("div");
+                    spark.className = "sparkle-particle";
+                    spark.style.left = burstX + "vw";
+                    spark.style.top = burstY + "vh";
+                    spark.style.background = activeColor;
+                    spark.style.boxShadow = `0 0 8px ${activeColor}`;
+                    
+                    const angle = (j / 20) * 2 * Math.PI;
+                    const radius = 60 + Math.random() * 100;
+                    spark.style.setProperty('--mx', `${Math.cos(angle) * radius}px`);
+                    spark.style.setProperty('--my', `${Math.sin(angle) * radius}px`);
+                    
+                    const size = (4 + Math.random() * 4) + "px";
+                    spark.style.width = size;
+                    spark.style.height = size;
+
+                    document.body.appendChild(spark);
+                    setTimeout(() => spark.remove(), 800);
+                }
+            }, i * 300);
+        }
     }
 </script>
-
 </body>
 </html>
