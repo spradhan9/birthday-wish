@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Happy Birthday Dipu Bhai ✨</title>
+    <title>✨ Dipu Bhai's Cinematic 3D Birthday ✨</title>
     <style>
         * {
             margin: 0;
@@ -12,18 +12,17 @@
             font-family: 'Georgia', serif;
         }
 
-        body {
+        body, html {
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            background: radial-gradient(circle at center, #0f172a 0%, #020617 70%, #000000 100%);
+            background: #020208;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #fff;
         }
 
-        /* 3D Canvas Container */
         #canvas-container {
             position: absolute;
             width: 100%;
@@ -33,7 +32,7 @@
             z-index: 1;
         }
 
-        /* Premium HTML UI Layout Overlay */
+        /* Cinema UI Overlay */
         .ui-layer {
             position: absolute;
             z-index: 10;
@@ -48,81 +47,64 @@
         }
 
         .title {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             font-weight: bold;
             font-style: italic;
             text-align: center;
             pointer-events: auto;
-            background: linear-gradient(135deg, #eab308 0%, #ca8a04 40%, #fef08a 70%, #854d0e 100%);
+            background: linear-gradient(135deg, #f39c12 0%, #f1c40f 50%, #f39c12 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.7));
-            letter-spacing: 1px;
-            user-select: none;
+            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.9));
+            letter-spacing: 2px;
+            animation: glow 3s ease-in-out infinite alternate;
         }
 
-        .instruction-btn {
-            font-size: 0.95rem;
-            color: #94a3b8;
-            letter-spacing: 1.5px;
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 4px rgba(241,196,15,0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(241,196,15,0.6)); }
+        }
+
+        .instruction-toast {
+            font-size: 1rem;
+            color: #f1c40f;
+            letter-spacing: 1px;
             text-transform: uppercase;
             font-weight: 600;
-            cursor: pointer;
-            pointer-events: auto;
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(5, 5, 15, 0.85);
             padding: 16px 36px;
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            user-select: none;
+            border: 1px solid rgba(241, 196, 15, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            transition: all 0.5s ease;
         }
 
-        .instruction-btn:hover {
-            border-color: #eab308;
-            background: rgba(234, 179, 8, 0.15);
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(234, 179, 8, 0.25);
-        }
-
-        /* Frosted Glass Wish Card Popup */
-        .wish-card {
+        /* Glassmorphism Premium Card Overlay */
+        .message-panel {
+            position: absolute;
+            z-index: 20;
             display: none;
-            max-width: 480px;
-            background: rgba(15, 23, 42, 0.65);
+            max-width: 440px;
+            background: rgba(10, 15, 30, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px 30px;
-            border-radius: 28px;
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1);
+            padding: 35px 25px;
+            border-radius: 24px;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
             text-align: center;
-            pointer-events: auto;
-            animation: fadeInCard 1.4s forwards cubic-bezier(0.22, 1, 0.36, 1);
+            animation: panelSlideIn 1.5s forwards cubic-bezier(0.22, 1, 0.36, 1);
+            bottom: 10%;
         }
 
-        @keyframes fadeInCard {
-            from { opacity: 0; transform: scale(0.92) translateY(30px); filter: blur(8px); }
-            to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
+        @keyframes panelSlideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .wish-card h2 {
-            color: #fef08a;
-            margin-bottom: 20px;
-            font-size: 2rem;
-            font-weight: normal;
-            letter-spacing: 1px;
-        }
-
-        .wish-card p {
-            line-height: 1.9;
-            color: #cbd5e1;
-            font-size: 1.08rem;
-            font-weight: 300;
-        }
+        .message-panel h2 { color: #f1c40f; margin-bottom: 15px; font-size: 1.8rem; }
+        .message-panel p { line-height: 1.8; color: #cbd5e1; font-size: 1.05rem; font-weight: 300; }
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -134,241 +116,379 @@
 
     <div class="ui-layer">
         <h1 class="title" id="mainTitle">Happy Birthday Dipu Bhai</h1>
+        <div class="instruction-toast" id="statusToast">🕯️ Touch the candle flame to blow it out</div>
+    </div>
 
-        <div class="wish-card" id="wishCard">
-            <h2>👑 To Dipu Bhai 👑</h2>
-            <p>
-                Wishing you a spectacular year ahead filled with grandeur, peak health, and absolute success. 
-                May all your grandest ambitions match reality, and may your life always be filled with happiness, 
-                luxury, and true brotherhood. Cheers to your next brilliant chapter! ❤️🥂
-            </p>
-        </div>
-
-        <button class="instruction-btn" id="actionBtn">🕯️ Click Candle to Blow Out</button>
+    <div class="message-panel" id="messagePanel">
+        <h2>👑 Dearest Dipu Bhai 👑</h2>
+        <p>
+            May your path ahead match the brilliance of this day! Wishing you peak health, infinite success, 
+            and a luxurious life journey ahead. Keep shining, big brother! ❤️🥂
+        </p>
     </div>
 
 <script>
-    let appStep = 0; 
+    let appStage = 0; // 0=Lit, 1=Blown/Smoke, 2=FirstCutMade, 3=SecondCutMade/AnimateOut
+    let smokeParticles = [];
+    let cutAngle1 = null;
+    let cutAngle2 = null;
+
     const container = document.getElementById('canvas-container');
-    const actionBtn = document.getElementById('actionBtn');
-    const wishCard = document.getElementById('wishCard');
+    const statusToast = document.getElementById('statusToast');
+    const messagePanel = document.getElementById('messagePanel');
     const mainTitle = document.getElementById('mainTitle');
 
-    // --- THREE.JS SCENE SETUP ---
+    // --- SCENE & INITIALIZATION ENGINE ---
     const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
     
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 13, 26);
-    camera.lookAt(0, 1.8, 0);
+    // Establishing a high cinematic opening camera frame overview look
+    camera.position.set(0, 16, 22);
+    camera.lookAt(0, 2, 0);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
     container.appendChild(renderer.domElement);
 
-    // --- LIGHTING SCHEME ---
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
-    scene.add(ambientLight);
+    // --- RAYCASTING MOUSE INTERACTION SETUP ---
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
 
-    const studioLight = new THREE.DirectionalLight(0xffffff, 0.85);
-    studioLight.position.set(12, 22, 12);
-    studioLight.castShadow = true;
-    studioLight.shadow.mapSize.width = 2048;
-    studioLight.shadow.mapSize.height = 2048;
-    scene.add(studioLight);
+    // --- STUDIO ILLUMINATION ---
+    const ambient = new THREE.AmbientLight(0xffffff, 0.35);
+    scene.add(ambient);
 
-    const candleLight = new THREE.PointLight(0xffaa44, 2.5, 15);
-    candleLight.position.set(0, 5.8, 0);
+    const keyLight = new THREE.DirectionalLight(0xfff8ee, 1.2);
+    keyLight.position.set(15, 25, 10);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 2048;
+    keyLight.shadow.mapSize.height = 2048;
+    scene.add(keyLight);
+
+    const candleLight = new THREE.PointLight(0xff9d44, 3, 15);
+    candleLight.position.set(0, 6.2, 0);
     scene.add(candleLight);
 
-    // --- PROCEDURAL REPLICATED CAKE TEXTURE MAPPING ---
-    const canvasTexture = document.createElement('canvas');
-    canvasTexture.width = 512; canvasTexture.height = 512;
-    const ctx = canvasTexture.getContext('2d');
-    const grad = ctx.createLinearGradient(0, 0, 0, 512);
-    grad.addColorStop(0, '#fffbeb'); // Upper ivory cream layer
-    grad.addColorStop(0.4, '#38bdf8'); // Sky blue melt blending
-    grad.addColorStop(0.8, '#0284c7'); // Rich ocean blue
-    grad.addColorStop(1, '#0369a1'); // Deep navy base
-    ctx.fillStyle = grad; ctx.fillRect(0, 0, 512, 512);
-    const texture = new THREE.CanvasTexture(canvasTexture);
+    // --- PROCEDURAL PHOTO-REALISTIC CAKE TEXTURING MATRICES ---
+    const cakeCanvas = document.createElement('canvas');
+    cakeCanvas.width = 1024; cakeCanvas.height = 1024;
+    const ctx = cakeCanvas.getContext('2d');
+    
+    // Replicating watercolor ocean blue detailing seamlessly from image data
+    let grad = ctx.createLinearGradient(0, 0, 0, 1024);
+    grad.addColorStop(0, '#fffdf4');  // Luxurious ivory cream crown
+    grad.addColorStop(0.35, '#fffdf4');
+    grad.addColorStop(0.5, '#40a9ff'); // Smooth watercolor feather blend
+    grad.addColorStop(0.75, '#0066cc'); // Deep vibrant ocean blue
+    grad.addColorStop(1, '#0033aa');   // Solid naval bottom foundation base
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, 1024, 1024);
 
-    const cakeSideMat = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.35, metalness: 0.05 });
-    const cakeTopMat = new THREE.MeshStandardMaterial({ color: 0xfffbeb, roughness: 0.45 });
+    // Painting gold foil speckles organically onto the side base wrapper texture
+    ctx.fillStyle = '#f1c40f';
+    for(let i=0; i<40; i++){
+        let sx = Math.random() * 1024; let sy = 500 + Math.random() * 400;
+        ctx.beginPath(); ctx.arc(sx, sy, 2 + Math.random()*4, 0, Math.PI*2); ctx.fill();
+    }
+    const cakeTexture = new THREE.CanvasTexture(cakeCanvas);
 
-    // --- GENERATE CAKE CORE ---
+    const cakeSideMat = new THREE.MeshStandardMaterial({ map: cakeTexture, roughness: 0.4, metalness: 0.1 });
+    const cakeTopMat = new THREE.MeshStandardMaterial({ color: 0xfffdf4, roughness: 0.5 });
+
+    // --- GENERATING THE SOLID 3D MAIN CYLINDER CAKE MESH ---
     const cakeGroup = new THREE.Group();
     scene.add(cakeGroup);
 
-    // Base segment (7/8ths cylinder structure mesh)
-    const mainCakeGeom = new THREE.CylinderGeometry(6, 6, 5, 64, 1, false, 0, Math.PI * 2 * 0.85);
+    const mainCakeGeom = new THREE.CylinderGeometry(6, 6, 5.2, 128);
     const mainCakeMesh = new THREE.Mesh(mainCakeGeom, [cakeSideMat, cakeTopMat, cakeTopMat]);
-    mainCakeMesh.position.y = 2.5;
+    mainCakeMesh.position.y = 2.6;
     mainCakeMesh.castShadow = true;
     mainCakeMesh.receiveShadow = true;
+    mainCakeMesh.name = "cake_body";
     cakeGroup.add(mainCakeMesh);
 
-    // --- GENERATE DETACHABLE SLICE ---
-    const sliceGroup = new THREE.Group();
-    cakeGroup.add(sliceGroup);
-
-    const sliceGeom = new THREE.CylinderGeometry(6, 6, 5, 32, 1, false, Math.PI * 2 * 0.85, Math.PI * 2 * 0.15);
-    const sliceMesh = new THREE.Mesh(sliceGeom, [cakeSideMat, cakeTopMat, cakeTopMat]);
-    sliceMesh.position.y = 2.5;
-    sliceMesh.castShadow = true;
-    sliceMesh.receiveShadow = true;
-    sliceGroup.add(sliceMesh);
-
-    // --- METALLIC GOLD SPHERES (MATCHING IMAGE SPECIFICATIONS) ---
-    const goldMaterial = new THREE.MeshStandardMaterial({
-        color: 0xd4af37,
-        metalness: 0.95,
-        roughness: 0.12,
-    });
-
-    const ballPositions = [
-        { r: 1.1, x: -3.3, y: 5.4, z: 2 },
-        { r: 0.85, x: -4.0, y: 5.2, z: 0.5 },
-        { r: 0.65, x: -3.0, y: 5.1, z: -1 },
-        { r: 1.0, x: 4, y: 0.8, z: 4 }, 
-        { r: 0.6, x: 4.8, y: 0.5, z: 2.8 }
+    // --- METALLIC GOLD SPHERES COLLECTION ---
+    const goldMat = new THREE.MeshStandardMaterial({ color: 0xe5c158, metalness: 0.95, roughness: 0.12 });
+    
+    const spheresData = [
+        { r: 1.15, x: -3.4, y: 5.6, z: 2.2 },
+        { r: 0.85, x: -4.1, y: 5.4, z: 0.8 },
+        { r: 0.65, x: -3.2, y: 5.3, z: -0.6 },
+        { r: 0.55, x: -2.4, y: 5.3, z: 1.8 },
+        { r: 1.05, x: 4.4, y: 0.9, z: 3.8 },
+        { r: 0.70, x: 5.1, y: 0.6, z: 2.3 }
     ];
 
-    ballPositions.forEach(pos => {
-        const ballGeom = new THREE.SphereGeometry(pos.r, 32, 32);
-        const ballMesh = new THREE.Mesh(ballGeom, goldMaterial);
-        ballMesh.position.set(pos.x, pos.y, pos.z);
-        ballMesh.castShadow = true;
-        if(pos.y > 5) {
-            cakeGroup.add(ballMesh);
-        } else {
-            scene.add(ballMesh);
-        }
+    spheresData.forEach(data => {
+        const geom = new THREE.SphereGeometry(data.r, 32, 32);
+        const mesh = new THREE.Mesh(geom, goldMat);
+        mesh.position.set(data.x, data.y, data.z);
+        mesh.castShadow = true;
+        if(data.y > 5) cakeGroup.add(mesh); else scene.add(mesh);
     });
 
-    // --- HIGH-END CANDLE MODULE ---
+    // --- REPLICATED WAX CANDLE MODULE (IMAGE_1EC39A.PNG MATCH) ---
     const candleGroup = new THREE.Group();
-    candleGroup.position.set(-1, 5, 2);
+    candleGroup.position.set(-0.8, 5.2, 1.5);
     scene.add(candleGroup);
 
-    const candleGeom = new THREE.CylinderGeometry(0.18, 0.18, 1.8, 16);
-    const candleMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5 });
+    const candleGeom = new THREE.CylinderGeometry(0.22, 0.22, 1.8, 32);
+    // Wax shader material setup mimicking subsurface scattering qualities
+    const candleMat = new THREE.MeshStandardMaterial({ color: 0xfffae8, roughness: 0.35, metalness: 0.0 });
     const candleMesh = new THREE.Mesh(candleGeom, candleMat);
     candleMesh.position.y = 0.9;
     candleMesh.castShadow = true;
+    candleMesh.name = "candle_body";
     candleGroup.add(candleMesh);
 
-    const flameGeom = new THREE.SphereGeometry(0.24, 16, 16);
-    flameGeom.scale(1, 2.6, 1); 
-    const flameMat = new THREE.MeshBasicMaterial({ color: 0xffaa44 });
+    // Procedural Flame Particle mesh geometry
+    const flameGeom = new THREE.SphereGeometry(0.25, 32, 32);
+    flameGeom.scale(1, 2.8, 1);
+    const flameMat = new THREE.MeshBasicMaterial({ color: 0xffe699 });
     const flameMesh = new THREE.Mesh(flameGeom, flameMat);
     flameMesh.position.y = 2.0;
+    flameMesh.name = "flame_target";
     candleGroup.add(flameMesh);
 
-    // --- HIGH-END INTERACTIVE CUTTING KNIFE ---
+    // --- INTERACTIVE MOVING SLICING KNIFE MODULE ---
     const knifeGroup = new THREE.Group();
-    knifeGroup.position.set(15, 12, 10);
+    knifeGroup.position.set(16, 12, 12);
     knifeGroup.rotation.set(0, -Math.PI/2, -Math.PI/6);
     scene.add(knifeGroup);
 
     const bladeShape = new THREE.Shape();
-    bladeShape.moveTo(0, 0); bladeShape.lineTo(6, 0); bladeShape.lineTo(5.5, 1.2); bladeShape.lineTo(0, 0.8);
-    const bladeExtrude = new THREE.ExtrudeGeometry(bladeShape, { depth: 0.05, bevelEnabled: false });
-    const bladeMat = new THREE.MeshStandardMaterial({ color: 0xdddddd, metalness: 0.85, roughness: 0.15 });
+    bladeShape.moveTo(0,0); bladeShape.lineTo(6.5, 0); bladeShape.lineTo(6.0, 1.3); bladeShape.lineTo(0, 0.9);
+    const bladeExtrude = new THREE.ExtrudeGeometry(bladeShape, { depth: 0.06, bevelEnabled: false });
+    const bladeMat = new THREE.MeshStandardMaterial({ color: 0xdddddd, metalness: 0.9, roughness: 0.1 });
     const bladeMesh = new THREE.Mesh(bladeExtrude, bladeMat);
     knifeGroup.add(bladeMesh);
 
-    const handleGeom = new THREE.CylinderGeometry(0.18, 0.18, 2.5, 16);
-    const handleMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.7 });
+    const handleGeom = new THREE.CylinderGeometry(0.18, 0.18, 2.4, 16);
+    const handleMat = new THREE.MeshStandardMaterial({ color: 0x111115, roughness: 0.8 });
     const handleMesh = new THREE.Mesh(handleGeom, handleMat);
     handleMesh.rotation.z = Math.PI / 2;
-    handleMesh.position.set(-1.2, 0.4, 0.025);
+    handleMesh.position.set(-1.2, 0.45, 0.03);
     knifeGroup.add(handleMesh);
 
-    // --- BUTTON TRIGGER LOGIC PIPELINE ---
-    actionBtn.addEventListener('click', () => {
-        if (appStep === 0) {
-            appStep = 1;
+    // --- SCREEN INTERACTION HANDLER CLICK DISPATCHER ---
+    window.addEventListener('pointerdown', (e) => {
+        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        raycaster.setFromCamera(mouse, camera);
+
+        const intersects = raycaster.intersectObjects(scene.children, true);
+        if(!intersects.length) return;
+
+        let hitObj = intersects[0].object;
+
+        // Stage 1: Extinguish Candle Flame Action
+        if(appStage === 0 && (hitObj.name === "flame_target" || hitObj.name === "candle_body")) {
+            appStage = 1;
             flameMesh.visible = false;
             candleLight.visible = false;
-            actionBtn.innerText = "🔪 Click to Cut Cake with Knife";
-        } else if (appStep === 1) {
-            appStep = 2;
-            actionBtn.style.display = "none";
+            statusToast.innerHTML = "🔪 Touch side edge of the cake to make 1st Cut";
+            return;
+        }
 
-            const tl = gsap.timeline();
-            tl.to(knifeGroup.position, { x: 0, y: 7.5, z: 6, duration: 1.2, ease: "power2.out" });
-            tl.to(knifeGroup.rotation, { x: 0, y: -Math.PI/4, z: 0, duration: 1.2, ease: "power2.out" }, "<");
-            tl.to(knifeGroup.position, { y: 2.2, duration: 0.6, ease: "bounce.out" });
-            
-            tl.to(sliceGroup.position, {
-                x: Math.cos(Math.PI * 2 * 0.925) * 2.8,
-                z: Math.sin(Math.PI * 2 * 0.925) * 2.8,
-                duration: 1.5,
-                ease: "power3.out"
-            }, "+=0.2");
+        // Stage 2: Capture Double Cut Intersection Mechanics
+        if(appStage === 1 && intersects[0].object.name === "cake_body") {
+            let pt = intersects[0].point;
+            cutAngle1 = Math.atan2(pt.z, pt.x);
+            appStage = 2;
+            statusToast.innerHTML = "🎂 Touch another side edge to complete the slice";
+            executeKnifeAnimateAction(pt, cutAngle1);
+            return;
+        }
 
-            tl.to(knifeGroup.position, { x: -12, y: 14, z: 8, duration: 1, ease: "power2.in" }, "<");
-            tl.to(camera.position, { x: -8, y: 11, z: 20, duration: 2, ease: "power2.inOut" }, "-=0.5");
-            tl.to("#canvas-container", { opacity: 0.35, duration: 1 });
-            tl.call(() => {
-                mainTitle.innerText = "🎉 CELEBRATING DIPU BHAI 🎉";
-                wishCard.style.display = "block";
-                triggerConfettiRain();
-            });
+        if(appStage === 2 && intersects[0].object.name === "cake_body") {
+            let pt = intersects[0].point;
+            cutAngle2 = Math.atan2(pt.z, pt.x);
+            appStage = 3;
+            statusToast.innerHTML = "✨ Slicing Success! Celebrating Dipu Bhai...";
+            executeKnifeAnimateAction(pt, cutAngle2, true);
         }
     });
 
-    // --- CORE RENDERING ENGINE TICK LOOP ---
-    let tick = 0;
-    function renderFrame() {
-        requestAnimationFrame(renderFrame);
-        tick++;
+    // --- PROCEDURAL ANIMATED KNIFE ROUTINE ---
+    function executeKnifeAnimateAction(targetPoint, angle, isFinalCut = false) {
+        const cutTimeline = gsap.timeline();
+        
+        // Position knife smoothly above target slice location coordinates
+        cutTimeline.to(knifeGroup.position, { x: targetPoint.x, y: 8, z: targetPoint.z, duration: 0.8, ease: "power2.out" });
+        cutTimeline.to(knifeGroup.rotation, { x: 0, y: -angle, z: 0, duration: 0.8 }, "<");
+        
+        // Chop downwards into cake body plane depth
+        cutTimeline.to(knifeGroup.position, { y: 2.2, duration: 0.4, ease: "power1.in" });
+        // Retract knife cleanly back up out of screen bounds
+        cutTimeline.to(knifeGroup.position, { y: 12, duration: 0.5, ease: "power2.inOut" });
 
-        if (appStep < 2) {
-            cakeGroup.rotation.y = Math.sin(tick * 0.005) * 0.12;
+        if(isFinalCut) {
+            cutTimeline.call(() => {
+                // Remove initial solid cake cylinder and substitute with broken geometry components
+                mainCakeMesh.visible = false;
+                buildAndAnimateWedgeSlices(cutAngle1, cutAngle2);
+            });
+        }
+    }
+
+    // --- HIGH-END DYNAMIC CAKE GEOMETRY PIECE SPLITTING ---
+    function buildAndAnimateWedgeSlices(a1, a2) {
+        // Enforce clockwise sorting sequence alignment parameters 
+        let start = Math.min(a1, a2);
+        let end = Math.max(a1, a2);
+        let sliceLength = end - start;
+
+        // Base Remaining Main Section Component Body
+        const remainingGeom = new THREE.CylinderGeometry(6, 6, 5.2, 96, 1, false, end, Math.PI*2 - sliceLength);
+        const remainingMesh = new THREE.Mesh(remainingGeom, [cakeSideMat, cakeTopMat, cakeTopMat]);
+        remainingMesh.position.y = 2.6;
+        cakeGroup.add(remainingMesh);
+
+        // Individual Detached Pull-out Slice Component Segment
+        const wedgeGroup = new THREE.Group();
+        cakeGroup.add(wedgeGroup);
+
+        const wedgeGeom = new THREE.CylinderGeometry(6, 6, 5.2, 48, 1, false, start, sliceLength);
+        const wedgeMesh = new THREE.Mesh(wedgeGeom, [cakeSideMat, cakeTopMat, cakeTopMat]);
+        wedgeMesh.position.y = 2.6;
+        wedgeGroup.add(wedgeMesh);
+
+        // Calculate direct radial vector axis path tracking line
+        let midAngle = start + (sliceLength / 2);
+        let pushX = Math.cos(midAngle) * 2.8;
+        let pushZ = Math.sin(midAngle) * 2.8;
+
+        const revealTimeline = gsap.timeline();
+        
+        // Slide out slice mesh perfectly along 3D spatial coordinate calculations
+        revealTimeline.to(wedgeGroup.position, { x: pushX, z: pushZ, duration: 1.8, ease: "power3.out", delay: 0.2 });
+        // Smoothly adjust camera system to reveal interior profile depth
+        revealTimeline.to(camera.position, { x: -7, y: 9, z: 18, duration: 2.5, ease: "power2.inOut" }, "<");
+        
+        revealTimeline.call(() => {
+            // Fade out the scene stage objects to make way for the 3D Picture Frame display window
+            gsap.to([cakeGroup, candleGroup, knifeGroup], { opacity: 0, duration: 1 });
+            buildCinematicPhotoFrame();
+        });
+    }
+
+    // --- 3D FLOATING VIDEO FEEL PICTURE FRAME REVEAL ---
+    function buildCinematicPhotoFrame() {
+        const frameGroup = new THREE.Group();
+        frameGroup.position.set(0, 3, -10); // Starts deep inside layout viewport space
+        scene.add(frameGroup);
+
+        // Load the actual 'birthday-photo.jpg' asset safely onto texture space plane
+        const loader = new THREE.TextureLoader();
+        loader.load('birthday-photo.jpg', (imgTex) => {
+            const photoGeom = new THREE.PlaneGeometry(7, 7);
+            const photoMat = new THREE.MeshBasicMaterial({ map: imgTex, side: THREE.DoubleSide });
+            const photoMesh = new THREE.Mesh(photoGeom, photoMat);
+            frameGroup.add(photoMesh);
+
+            // Framing premium gold border trim ring mesh box
+            const borderGeom = new THREE.PlaneGeometry(7.4, 7.4);
+            const borderMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.9, roughness: 0.2, side: THREE.DoubleSide });
+            const borderMesh = new THREE.Mesh(borderGeom, borderMat);
+            borderMesh.position.z = -0.05;
+            frameGroup.add(borderMesh);
+
+            // Animate frame pushing directly forward towards camera eye sight lines
+            gsap.to(frameGroup.position, { z: 2, y: 3.5, duration: 2.5, ease: "power2.out" });
+            gsap.to(frameGroup.rotation, { y: Math.PI * 2, duration: 2.5, ease: "power2.out" });
+            
+            // Deploy UI text elements overlay presentation box wrapper
+            setTimeout(() => {
+                document.getElementById('statusToast').style.display = "none";
+                mainTitle.innerText = "👑 LONG LIVE DIPU BHAI 👑";
+                messagePanel.style.display = "block";
+                triggerGoldenGlitterBurst();
+            }, 2200);
+        });
+    }
+
+    // --- REAL-TIME SMOKE SIMULATOR LOGIC LOOP ---
+    function spawnSmokeParticle() {
+        if(appStage !== 1) return; 
+        let p = {
+            mesh: new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 8), new THREE.MeshBasicMaterial({ color: 0xdddddd, transparent: true, opacity: 0.5 })),
+            vx: (Math.random() - 0.5) * 0.02,
+            vy: 0.04 + Math.random() * 0.03,
+            vz: (Math.random() - 0.5) * 0.02
+        };
+        p.mesh.position.set(-0.8 + (Math.random()-0.5)*0.1, 7.0, 1.5 + (Math.random()-0.5)*0.1);
+        scene.add(p.mesh);
+        smokeParticles.push(p);
+    }
+
+    // --- CORE REAL-TIME RENDERING CLOCK FRAME TICK LOOP ---
+    let timeTick = 0;
+    function render() {
+        requestAnimationFrame(render);
+        timeTick++;
+
+        // Simulating procedural organic fire candle flame flicker movement
+        if(flameMesh.visible) {
+            flameMesh.scale.set(1 + Math.sin(timeTick*0.5)*0.07, 2.8 + Math.cos(timeTick*0.4)*0.15, 1);
+            candleLight.intensity = 3.0 + Math.sin(timeTick * 0.6) * 0.4;
         }
 
-        if (flameMesh.visible) {
-            flameMesh.scale.set(1 + Math.sin(tick * 0.4) * 0.08, 2.5 + Math.cos(tick * 0.3) * 0.12, 1);
-            candleLight.intensity = 2.5 + Math.sin(tick * 0.5) * 0.4;
+        // Processing active physical smoke physics simulation tracking lists
+        if(timeTick % 3 === 0) spawnSmokeParticle();
+        for(let i = smokeParticles.length - 1; i >= 0; i--) {
+            let p = smokeParticles[i];
+            p.mesh.position.x += p.vx; p.mesh.position.y += p.vy; p.mesh.position.z += p.vz;
+            p.mesh.material.opacity -= 0.006;
+            p.mesh.scale.addScalar(0.015);
+            if(p.mesh.material.opacity <= 0) {
+                scene.remove(p.mesh);
+                smokeParticles.splice(i, 1);
+            }
+        }
+
+        // Gentle camera cinematic pan track sequence
+        if(appStage < 3) {
+            cakeGroup.rotation.y = Math.sin(timeTick * 0.004) * 0.08;
         }
 
         renderer.render(scene, camera);
     }
-    renderFrame();
+    render();
 
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    function triggerConfettiRain() {
-        const colors = ['#fef08a', '#38bdf8', '#0284c7', '#eab308', '#ffffff'];
-        for(let i=0; i<150; i++) {
+    // --- GOLD GLITTER EXPLOSION PARTICLES GENERATOR ---
+    function triggerGoldenGlitterBurst() {
+        for(let i=0; i<160; i++) {
             const conf = document.createElement('div');
             conf.style.position = 'absolute';
-            conf.style.width = (4 + Math.random()*6) + 'px';
-            conf.style.height = (8 + Math.random()*10) + 'px';
-            conf.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+            conf.style.width = (3 + Math.random()*5) + 'px';
+            conf.style.height = (6 + Math.random()*8) + 'px';
+            conf.style.backgroundColor = ['#f1c40f', '#f39c12', '#fffdf4'][Math.floor(Math.random()*3)];
             conf.style.left = Math.random() * 100 + 'vw';
             conf.style.top = '-5vh';
-            conf.style.zIndex = '5';
+            conf.style.zIndex = '15';
             document.body.appendChild(conf);
 
             gsap.to(conf, {
                 y: '110vh',
-                x: `+=${(Math.random() - 0.5) * 200}px`,
-                rotation: Math.random() * 720,
-                duration: 2 + Math.random() * 3,
+                x: `+=${(Math.random() - 0.5) * 250}px`,
+                rotation: Math.random() * 1080,
+                duration: 2.5 + Math.random() * 2.5,
                 ease: "linear",
                 onComplete: () => conf.remove()
             });
         }
     }
+
+    // Adaptive viewport window resizing calculations
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
 </script>
 </body>
 </html>
